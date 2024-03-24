@@ -15,8 +15,11 @@ function Login() {
         axios.post('http://localhost:3001/login',{email,password})
         .then((res) => {
             console.log(res);
-            if(res.data.message === "Successfully Logged In"){
-                navigate('/dashboard')
+            if(res.data.Login){
+                localStorage.setItem("token", res.data.token);
+                navigate('/dashboard');
+            }else{
+                alert("No record exists");
             }
             
          })
